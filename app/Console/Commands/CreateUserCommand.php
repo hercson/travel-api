@@ -39,6 +39,7 @@ class CreateUserCommand extends Command
         $role = Role::where('name', $roleName)->first();
         if (! $role) {
             $this->error('Role not found');
+
             return -1;
         }
 
@@ -52,6 +53,7 @@ class CreateUserCommand extends Command
             foreach ($validator->errors()->all() as $error) {
                 $this->error($error);
             }
+
             return -1;
         }
 
@@ -61,6 +63,6 @@ class CreateUserCommand extends Command
             $newUser->roles()->attach($role->id);
         });
 
-        $this->info('User '. $user['email'] . ' created successfully');
+        $this->info('User '.$user['email'].' created successfully');
     }
 }
