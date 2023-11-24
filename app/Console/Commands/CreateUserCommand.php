@@ -47,7 +47,7 @@ class CreateUserCommand extends Command
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', Password::defaults()],
         ]);
-        
+
         if ($validator->fails()) {
             foreach ($validator->errors()->all() as $error) {
                 $this->error($error);
